@@ -8,7 +8,9 @@
   },
   "scripts": {
     "start": "nodemon --exec tsx --env-file=.env src/server.ts",
-    "dev": "nodemon --inspect --exec tsx --env-file=.env src/server.ts"
+    "dev": "nodemon --inspect --exec tsx --env-file=.env src/server.ts",
+    "build": "tsc && cp db.json src/db.json",
+    "vercel-build": "npm run build"
   },
   "author": "",
   "license": "ISC",

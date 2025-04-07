@@ -1,13 +1,21 @@
 import express, { Request, Response } from "express";
 import colors from "@colors/colors";
 import cors from "cors";
-import path from "path";
-import { promises as fs } from "fs";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const tasks = [
+  {
+    id: "1",
+    name: "Первая",
+    text: "sadf",
+    isDone: true,
+  },
+  {
+    id: "2",
+    name: "Вторая",
+    text: "sadf",
+    isDone: false,
+  },
+];
 // import { favoriteRouter, recipesRouter, summaryRouter } from "./routes";
 
 // import { checkApiKey } from "./middlewares/checkApiKey";
@@ -27,16 +35,8 @@ const PORT = process.env.PORT || 5000;
 // app.use("/api/recipes/:id/summary/", summaryRouter);
 // app.use("/api/recipes/favorite/", favoriteRouter);
 
-app.get("/", async (_req: Request, res: Response) => {
-  try {
-    const dbPath = path.join(__dirname, "db.json");
-    const rawData = await fs.readFile(dbPath, "utf-8");
-    const jsonData = JSON.parse(rawData);
-    res.json(jsonData.tasks);
-  } catch (error) {
-    console.error("Ошибка при чтении файла:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
+app.get("/", (_req: Request, res: Response) => {
+  res.json(tasks);
 });
 
 // Для локальной разработки
