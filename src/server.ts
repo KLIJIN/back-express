@@ -39,6 +39,14 @@ app.get("/", (_req: Request, res: Response) => {
   res.json(tasks);
 });
 
+app.get("/tasks", (req: Request, res: Response) => {
+    console.log('tasks req', req);
+    res.json(tasks);
+  });
+  
+
+
+
 // Для локальной разработки
 if (process.env.NODE_ENV !== "production") {
   app.listen(PORT, () => {
