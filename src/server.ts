@@ -3,19 +3,25 @@ import colors from "@colors/colors";
 import cors from "cors";
 
 const tasks = [
-  {
-    id: "1",
-    name: "Первая",
-    text: "sadf",
-    isDone: true,
-  },
-  {
-    id: "2",
-    name: "Вторая",
-    text: "sadf",
-    isDone: false,
-  },
-];
+    {
+      id: "1",
+      name: "Покупки",
+      text: "Купить молоко и хлеб",
+      isDone: false,
+    },
+    {
+      id: "2",
+      name: "Уборка",
+      text: "Помыть посуду",
+      isDone: true,
+    },
+    {
+      id: "3",
+      name: "Работа",
+      text: "Закончить проект",
+      isDone: false,
+    },
+  ];
 // import { favoriteRouter, recipesRouter, summaryRouter } from "./routes";
 
 // import { checkApiKey } from "./middlewares/checkApiKey";
@@ -40,12 +46,17 @@ app.get("/", (_req: Request, res: Response) => {
 });
 
 app.get("/tasks", (req: Request, res: Response) => {
-    console.log('tasks req.query:', req.query);
-    res.json(tasks);
+  console.log("tasks req.query:", req.query);
+  res.json({
+    data: tasks,
+    first: 1,
+    items: 3,
+    last: 10,
+    next: 2,
+    pages: 5,
+    prev: null,
   });
-  
-
-
+});
 
 // Для локальной разработки
 if (process.env.NODE_ENV !== "production") {
