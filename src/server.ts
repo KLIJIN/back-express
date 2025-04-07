@@ -40,7 +40,7 @@ app.get("/", (_req: Request, res: Response) => {
 });
 
 app.get("/tasks", (req: Request, res: Response) => {
-    console.log('tasks req', req);
+    console.log('tasks req.query:', req.query);
     res.json(tasks);
   });
   
